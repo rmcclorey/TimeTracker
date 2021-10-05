@@ -2,9 +2,15 @@
 {% block title %}Check in{% endblock %}
 {% block content %}
 <h1>Hello world!</h1>
+{% if checked_in %}
+<form method="POST" action="{{ url_for('checkOut') }}" class="form">
+    <button type="submit" id="check_out">Check Out</button>
+</form>
+{% else %}
 <form method="POST" action="{{ url_for('checkIn') }}" class="form">
     <button type="submit" id="check_in">Check in</button>
 </form>
+{% endif %}
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         <ul class="messages">

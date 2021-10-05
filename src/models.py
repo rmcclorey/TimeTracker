@@ -15,6 +15,7 @@ class User(UserMixin, Model):
     username = CharField(unique=True)
     password = CharField(max_length=100)
     checked_in = BooleanField(default=False)
+    is_admin = BooleanField(default=False)
 
     #Peewee Model requirements
     class Meta():

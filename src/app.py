@@ -3,6 +3,8 @@ from flask import Flask, render_template, redirect, url_for, flash, g
 from flask_bcrypt import check_password_hash, generate_password_hash
 from flask_login import LoginManager, login_user, login_required, logout_user, current_user
 
+from datetime import datetime
+
 import models
 import forms
 
@@ -36,7 +38,8 @@ def after_request(response):
 @app.route('/')
 @login_required
 def index():
-    return render_template('index.html')
+    checked_in = g.current_user._get_current_object().checked_in
+    return render_template('index.html',checked_in=checked_in)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -98,6 +101,20 @@ def checkIns():
     checkins = models.CheckIn.select().where(models.CheckIn.user == g.current_user._get_current_object())
     for checkIn in checkins:
         print(checkIn.timeIn)
+    return redirect(url_for('index'))
+
+@app.route('/checkOut', methods=['POST'])
+@login_required
+def checkOut():
+    user = g.current_user._get_current_object()
+    if user.checked_in:
+        user.checked_in = False
+        user.save()
+        checkIn = models.CheckIn.select().where(models.CheckIn.user == user)[0]
+        checkIn.timeOut = datetime.now()
+        checkIn.save()
+    else:
+        flash("You're not checked in!")
     return redirect(url_for('index'))
 
 @app.route('/about')
