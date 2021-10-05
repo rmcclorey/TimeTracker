@@ -1,0 +1,5 @@
+social.db
+tmp
+venv
+src/__pycache__
+src/*.db

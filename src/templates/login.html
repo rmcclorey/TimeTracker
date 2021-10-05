@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block content %}
+{% from "macros.html" import render_field%}
+<form method="POST" action="" class="form">
+    <h1 class="form_title">Login</h1>
+    {{ form.hidden_tag() }}
+    {% for field in form %}
+        {% if field.errors %}
+            {% for error in field.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        {% endif %}
+        {{ render_field(field) }}
+    {% endfor %}
+    <button type='submit' id='submit'>Login</button>
+</form>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class="messages">
+        {% for message in messages %}
+            <li> {{ message }} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
+{% endblock %}

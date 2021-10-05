@@ -1,0 +1,54 @@
+body { 
+    background: linear-gradient(120deg,#2302fc,#a002fc);
+    font-family: monospace;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background: white;
+    width: 300px;
+    border-radius:10px;
+}
+
+.form_title {
+    align-items: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.field input{
+    padding: 0 10px;
+    height: 40px;
+    border: none;
+    background: none;
+    outline:none;
+    width: 80%;
+}
+
+.field input:hover{
+    background: lightgrey;
+    transition: .5s;
+}
+
+button[type="submit"]{
+    width:90%;
+    height: 50px;
+    border: 1px solid;
+    border-radius:25px;
+    background: #2302fc;
+    color: white;
+}
+
+button[type="submit"]:hover{
+    transition: 0.5s;
+    background: #0760f9;
+    color: lightgrey;
+}
