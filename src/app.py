@@ -7,6 +7,7 @@ from datetime import datetime
 
 import models
 import forms
+from utils import format_checkin
 
 app = Flask(__name__)
 host = '0.0.0.0'
@@ -99,9 +100,10 @@ def checkIn():
 @login_required
 def checkIns():
     checkins = models.CheckIn.select().where(models.CheckIn.user == g.current_user._get_current_object())
-    for checkIn in checkins:
-        print(checkIn.timeIn)
-    return redirect(url_for('index'))
+    formattedCheckins = [format_checkin(checkin) for checkin in checkins if checkin.timeOut is not None ]
+    for checkin in checkins:
+        print(checkin.timeIn, checkin.timeOut)
+    return render_template('checkins.html', checkins=formattedCheckins)
 
 @app.route('/checkOut', methods=['POST'])
 @login_required
@@ -110,7 +112,7 @@ def checkOut():
     if user.checked_in:
         user.checked_in = False
         user.save()
-        checkIn = models.CheckIn.select().where(models.CheckIn.user == user)[0]
+        checkIn = models.CheckIn.select().where(models.CheckIn.user == user)[-1]
         checkIn.timeOut = datetime.now()
         checkIn.save()
     else:
