@@ -1,6 +1,12 @@
 # CheckIn App
 A basic timetracking program, built using Python, Flask, and a SQLite databse using Peewee as an ORM 
 
+## Table of Contents
+* [General Info](#General Info)
+* [Technologies](#Technologies)
+* [Setup](#Setup)
+* [TODO](#TODO)
+
 ## General Info
 I wrote this project to get more experience with [Flask](https://flask.palletsprojects.com/en/2.0.x/), [Peewee](https://docs.peewee-orm.com/en/latest/), and wtf_forms. It provides basic timeTracking functionality, allowing you to checkin/checkout and see the time spent in each individual session. 
 
