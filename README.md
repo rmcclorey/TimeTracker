@@ -2,7 +2,7 @@
 A basic timetracking program, built using Python, Flask, and a SQLite databse using Peewee as an ORM 
 
 ## Table of Contents
-* [General Info](#General Info)
+* [General Info](#General-Info)
 * [Technologies](#Technologies)
 * [Setup](#Setup)
 * [TODO](#TODO)
