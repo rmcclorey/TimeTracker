@@ -12,11 +12,11 @@ Created using
 * bcrypt 3.2.0
 
 ## Setup 
-'shell
+```bash
 $ git clone https://github.com/rmcclorey/TimeTracker
 $ pip install -r requirements.txt
 $ python src/app.py
-'
+```
 
 ## TODO
 * Create a better view for list of times. 
