@@ -1,4 +1,4 @@
-from flask_wtf import Form
+from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, DateTimeField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 
@@ -11,7 +11,7 @@ def username_exists(form, field):
         raise ValidationError("User with that name exists")
 
 
-class UserRegistration(Form):
+class UserRegistration(FlaskForm):
     username = StringField(
                 'username',
                 validators=[DataRequired(), username_exists]
@@ -25,7 +25,7 @@ class UserRegistration(Form):
                 validators=[DataRequired(), EqualTo('password', "Passwords must match")]
     )
 
-class LoginForm(Form):
+class LoginForm(FlaskForm):
     username = StringField(
                 'username',
                 validators=[DataRequired()]
@@ -36,7 +36,7 @@ class LoginForm(Form):
                 validators=[DataRequired()]
     )
 
-class checkInForm(Form):
+class checkInForm(FlaskForm):
     timeIn = DateTimeField(
             'timeIn',
             validators=[DataRequired()]
